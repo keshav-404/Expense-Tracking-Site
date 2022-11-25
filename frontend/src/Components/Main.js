@@ -10,6 +10,8 @@ import Chart from './Chart'
 import C from './C';
 import Login from './User/Login';
 import Register from './User/Register';
+import PieChart from './PieChart';
+
 
 class Main extends Component {
 	    render(){
@@ -24,6 +26,7 @@ class Main extends Component {
 					<Route path='/home' component={Home} />
 					<Route path='/expenses' component={Expenses} />
 					<Route path='/add' component={AddExpense} />
+					<Route  path='/piechart' component={PieChart}/>
 					<Route path='/statistic' component={Chart} />
 					<Route  path='/' component={Home}/>
 

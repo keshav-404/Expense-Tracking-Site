@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { AgChartsReact } from 'ag-charts-react';
-import { monthsInYear } from 'date-fns';
 import NavBar from './NavBar';
 
 export default class Chart extends Component {

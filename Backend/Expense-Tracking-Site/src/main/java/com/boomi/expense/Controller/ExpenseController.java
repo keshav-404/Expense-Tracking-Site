@@ -1,5 +1,6 @@
 package com.boomi.expense.Controller;
 
+import java.net.http.HttpHeaders;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -16,10 +17,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.boomi.expense.Repository.ExpenseRepository;
+import com.boomi.expense.config.JwtTokenFilter;
 import com.boomi.expense.config.JwtTokenProvider;
 import com.boomi.expense.model.Expense;
 
@@ -41,7 +44,6 @@ public class ExpenseController {
 	@GetMapping("/expenses")
 	@ResponseBody
 	public List<Expense> getExpenses(@RequestHeader Map<String,String> headers) {	
-//		log.info(headers.get("authorization"));
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
 		log.info(claims.getSubject());
@@ -97,7 +99,7 @@ public class ExpenseController {
 		log.info(claims.getSubject());
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DAY_OF_YEAR, -7);
+		cal.add(Calendar.DAY_OF_YEAR, -30);
 		String formattedDate = dateFormat.format(cal.getTime());
 		//return expenseRepository.findAllByDateGreaterThanOrderByDateAsc(formattedDate);
 		return expenseRepository.findByUserEmailAndDateGreaterThanOrderByDateAsc(claims.getSubject(),formattedDate);

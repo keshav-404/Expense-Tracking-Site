@@ -99,7 +99,7 @@ const Register = (props) => {
       setS(true);
           setError("Empty Field");
     }
-    else if(!user.email.match(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm))
+    else if(!user.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
     {
       setS(true);
       setError("Invalid Email");
@@ -129,11 +129,13 @@ const Register = (props) => {
 
           localStorage.getItem("jwtToken", response.data.token);
           setShow(true);
-          setMessage(response.message);
+          setS(false);
+          setMessage("Registered successfully");
           resetRegisterForm();
           setTimeout(() => {
             setShow(false);
-            props.history.push("/login")});
+            //alert("Registed Successfully")
+            props.history.push("/login")},700);
         }
         
 
@@ -152,6 +154,10 @@ const Register = (props) => {
     setUser(initialState);
   };
 
+  const close=()=>{
+    setS(false);
+  }
+
   return (
     <div>
         <NavBar/>
@@ -160,13 +166,14 @@ const Register = (props) => {
     <br></br>
     <br></br>
     
-      <div style={{ display: show ? "block" : "none" }}>
+
+    <div style={{ display: show ? "block" : "none" }}>
         <MyToast show={show} message={message} type={"success"} />
       </div>
       <Row className="justify-content-md-center">
         <Col xs={5}>
 
-          {s ?(<Alert variant="danger" onClose={() => setShow(false)} dismissible>
+          {s ?(<Alert variant="danger" onClose={close} dismissible>
             {error}
           </Alert>):(<div></div>)} 
            

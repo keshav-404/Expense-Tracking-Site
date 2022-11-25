@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Balance from './Balance';
 
-
 class Home extends Component {
 	render() {
 		return (

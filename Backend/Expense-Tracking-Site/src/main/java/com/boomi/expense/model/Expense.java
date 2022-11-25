@@ -10,7 +10,6 @@ import javax.persistence.Table;
 @Table(name = "tbl_expense")
 public class Expense {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -21,18 +20,13 @@ public class Expense {
 
 	private Double cost;
 
-	
-
 	private String date;
-	
-	private String userEmail;
-	
 
+	private String userEmail;
 
 	public String getUserEmail() {
 		return userEmail;
 	}
-
 
 	public void setUserEmail(String userEmail) {
 		this.userEmail = userEmail;
@@ -58,7 +52,6 @@ public class Expense {
 		this.category = category;
 	}
 
-
 	public Double getCost() {
 		return cost;
 	}
@@ -79,5 +72,4 @@ public class Expense {
 		this.id = id;
 	}
 
-	
 }

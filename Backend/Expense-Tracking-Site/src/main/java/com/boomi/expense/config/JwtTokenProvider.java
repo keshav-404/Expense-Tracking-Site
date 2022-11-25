@@ -1,6 +1,5 @@
 package com.boomi.expense.config;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -38,9 +37,9 @@ public class JwtTokenProvider implements Serializable {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 
-	private long validityInMilliseconds = 50 * 60 * 60 *1000; // 200 minute
+	private long validityInMilliseconds = 50 * 60 * 60 * 1000; 
 
-	public String createToken(String username,String role) {
+	public String createToken(String username, String role) {
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("auth", role);
 
@@ -55,20 +54,20 @@ public class JwtTokenProvider implements Serializable {
 
 	public Authentication getAuthentication(String username) {
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),getGrantedAuthority());
+		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),
+				getGrantedAuthority());
 	}
 
 	public Claims getClaimsFromToken(String token) {
 		return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
 	}
+
 	private Collection<GrantedAuthority> getGrantedAuthority() {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		
-			authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-		
+
+		authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+
 		return authorities;
 	}
-
-	
 
 }

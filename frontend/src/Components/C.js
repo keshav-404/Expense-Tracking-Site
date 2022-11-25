@@ -13,10 +13,6 @@ export default class C extends Component {
       d:[],
     };
   }
-  
-
-  
-
   componentDidMount() {
     axios.get('http://localhost:8080/expenses',{ headers: { "Authorization": localStorage.getItem("jwtToken")}})
 		.then((response) => {
@@ -38,7 +34,7 @@ export default class C extends Component {
       map1.set(expenses.category,expenses.cost)
       }
       // map1[expenses.category]+=expenses.cost;
-      console.log(map1[expenses.category])
+      console.log(map1)
     
     
     })
@@ -47,22 +43,19 @@ export default class C extends Component {
       })
       console.log(a);
 
+      
+      
+
      this.setState({
-      d:a
+      d:a,
      });
-  })
-  .catch(err => {
-    this.setState({
-      error: <div className="alert alert-warning" style={{ marginTop: '5%' }}>Please Login...</div>
-    })
-  });
-}
+  })}
 
 
    
 
   render() {
-    return <div style={{}}><NavBar/><AgChartsReact options={{
+    return <div><NavBar/><AgChartsReact options={{
       data: this.state.d,
       series: [
         {
@@ -74,6 +67,7 @@ export default class C extends Component {
             color: 'black',
             fontWeight: 'bold',
           },
+          label: { enabled: true },
         },
       ],
     }} /></div>;

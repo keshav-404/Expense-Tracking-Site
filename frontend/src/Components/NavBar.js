@@ -7,8 +7,13 @@ import {
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
+  faMoneyBill,
+  faMoneyCheck,
+  faMoneyBills,
+  faMoneyBillTransfer,
+  faMoneyBillWheat,
+  faMoneyBillWaveAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import userEvent from '@testing-library/user-event';
 
 const NavBar=(props)=> {
 	const auth = useSelector((state) => state.auth);
@@ -30,25 +35,27 @@ const NavBar=(props)=> {
 		return (
 			<div>
 				<Navbar bg="dark" variant="dark">
-				<Navbar.Brand href="/home">Expense Tracker</Navbar.Brand>
+				<Navbar.Brand href="/home"> Expense Tracking Site</Navbar.Brand>
 				
 				{localStorage.getItem("jwtToken")!=null?(<div><Nav className="mr-auto">
 					<Nav.Link href="/home">Home</Nav.Link>
 					<Nav.Link href="/expenses">Expenses</Nav.Link>
 					<Nav.Link href="/add">Add</Nav.Link>
 					<Nav.Link href="/statistic">Statistic</Nav.Link>
-					<Nav.Link href="/C">Chart</Nav.Link></Nav></div>):(<div></div>)}
+					<Nav.Link href="/piechart">PieChart</Nav.Link>
+					{/* <Nav.Link href="/C">Chart</Nav.Link> */}
+					</Nav></div>):(<div></div>)}
 					
 				
 				{localStorage.getItem("jwtToken")!=null?(
 					<Nav className="justify-content-end">
-						<NavItem style={{marginLeft:'930px'}}>
+						<NavItem style={{marginLeft:'860px'}}>
 						<Link to={"login"} className="nav-link" onClick={logoutUser}>
-          					<FontAwesomeIcon  icon={faSignOutAlt} /> Logout
+          					<FontAwesomeIcon icon={faSignOutAlt} /> Logout
         				</Link> 
 						</NavItem>
         			</Nav>
-				):(<div><Nav style={{marginLeft:'1100px'}}>
+				):(<div><Nav style={{marginLeft:'1130px'}}>
        				 <Link to={"register"} className="nav-link">
           				<FontAwesomeIcon icon={faUserPlus} /> SignUP
        			    </Link> <Link to={"login"} className="nav-link">
