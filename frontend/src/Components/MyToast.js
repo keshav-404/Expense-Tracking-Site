@@ -4,7 +4,7 @@ import { Toast } from "react-bootstrap";
 const MyToast = (props) => {
   const toastCss = {
     position: "fixed",
-    top: "10px",
+    top: "60px",
     right: "10px",
     zIndex: "1",
     

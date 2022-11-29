@@ -57,6 +57,7 @@ class AddExpense extends Component {
 
   changeCostHandler = (event) => {
     this.setState({ cost: event.target.value });
+    
   };
 
   changeDateHandler = (event) => {
@@ -91,6 +92,8 @@ class AddExpense extends Component {
     return (
       <div>
         <NavBar/>
+        <br />
+        <br />
         {localStorage.getItem("jwtToken")!=null?(<div className="container">
           <br></br>
           <h1 style={{ textAlign: "center" }}>Add an Expense</h1>

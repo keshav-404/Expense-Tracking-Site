@@ -21,7 +21,7 @@ class Main extends Component {
 				{/*Render Different Component based on Route*/}
 	            <Switch>
 					<Route path="/login" exact component={Login} />
-					<Route path='/C' component={C}/>
+					<Route path='/c' component={C}/>
 					<Route path="/register" exact component={Register} />
 					<Route path='/home' component={Home} />
 					<Route path='/expenses' component={Expenses} />

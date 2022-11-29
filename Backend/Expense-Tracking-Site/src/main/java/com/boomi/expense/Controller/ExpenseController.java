@@ -1,12 +1,11 @@
 package com.boomi.expense.Controller;
 
-import java.net.http.HttpHeaders;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.boomi.expense.Repository.ExpenseRepository;
-import com.boomi.expense.config.JwtTokenFilter;
 import com.boomi.expense.config.JwtTokenProvider;
 import com.boomi.expense.model.Expense;
-
 import io.jsonwebtoken.Claims;
 
 @RestController
@@ -40,10 +35,12 @@ public class ExpenseController {
 	
 	@Autowired
 	private JwtTokenProvider tokenProvider;
+	
 	@CrossOrigin(origins="http://localhost:3000")
 	@GetMapping("/expenses")
 	@ResponseBody
-	public List<Expense> getExpenses(@RequestHeader Map<String,String> headers) {	
+	public List<Expense> getExpenses(@RequestHeader Map<String,String> headers) {
+		log.info("Expense");
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
 		log.info(claims.getSubject());
@@ -54,7 +51,7 @@ public class ExpenseController {
 	@GetMapping("/balance")
 	@ResponseBody
 	public String getBalance(@RequestHeader Map<String,String> headers) {
-		log.info("ddd");
+		log.info("Balance");
 		double balance = 0;
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
@@ -68,13 +65,13 @@ public class ExpenseController {
 		System.out.println(balance);
 		DecimalFormat df = new DecimalFormat("#.##");
 		String formattedBalance = df.format(balance);
-		
 		return formattedBalance;
 	}
 	
 	@CrossOrigin(origins="http://localhost:3000")
 	@PostMapping("/add")
 	public void addExpense(@RequestBody Expense expense,@RequestHeader Map<String,String> headers) {
+		log.info("Add");
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
 		log.info(claims.getSubject());
@@ -87,6 +84,7 @@ public class ExpenseController {
 		expense1.setUserEmail(claims.getSubject());
         
 		
+		
 		expenseRepository.save(expense1);
 	}
 	
@@ -94,6 +92,7 @@ public class ExpenseController {
 	@GetMapping("/recent")
 	@ResponseBody
 	public List<Expense> getRecentExpenses(@RequestHeader Map<String,String> headers) {	
+		log.info("Statistic");
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
 		log.info(claims.getSubject());
@@ -110,6 +109,7 @@ public class ExpenseController {
 	@DeleteMapping(value = "/delete/{id}")
 	public List<Expense> deleteExpense(@PathVariable Long id,@RequestHeader Map<String,String> headers)
 	{
+		log.info("Deleted " + id);
 		expenseRepository.deleteById(id);
 		Claims claims=tokenProvider.getClaimsFromToken(headers.get("authorization"));
 		log.info(String.valueOf(claims));
@@ -118,9 +118,6 @@ public class ExpenseController {
 		
 		
 	}
-	
-	
-	
 	
 
 }

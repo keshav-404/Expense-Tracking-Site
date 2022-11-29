@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { } from 'react';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -7,12 +7,7 @@ import {
   faUserPlus,
   faSignInAlt,
   faSignOutAlt,
-  faMoneyBill,
-  faMoneyCheck,
-  faMoneyBills,
-  faMoneyBillTransfer,
-  faMoneyBillWheat,
-  faMoneyBillWaveAlt,
+ 
 } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar=(props)=> {
@@ -34,7 +29,7 @@ const NavBar=(props)=> {
 	
 		return (
 			<div>
-				<Navbar bg="dark" variant="dark">
+				<Navbar bg="dark" variant="dark" fixed="top">
 				<Navbar.Brand href="/home"> Expense Tracking Site</Navbar.Brand>
 				
 				{localStorage.getItem("jwtToken")!=null?(<div><Nav className="mr-auto">
@@ -42,14 +37,14 @@ const NavBar=(props)=> {
 					<Nav.Link href="/expenses">Expenses</Nav.Link>
 					<Nav.Link href="/add">Add</Nav.Link>
 					<Nav.Link href="/statistic">Statistic</Nav.Link>
-					<Nav.Link href="/piechart">PieChart</Nav.Link>
+					<Nav.Link href="/piechart">Chart</Nav.Link>
 					{/* <Nav.Link href="/C">Chart</Nav.Link> */}
 					</Nav></div>):(<div></div>)}
 					
 				
 				{localStorage.getItem("jwtToken")!=null?(
 					<Nav className="justify-content-end">
-						<NavItem style={{marginLeft:'860px'}}>
+						<NavItem style={{marginLeft:'880px'}}>
 						<Link to={"login"} className="nav-link" onClick={logoutUser}>
           					<FontAwesomeIcon icon={faSignOutAlt} /> Logout
         				</Link> 

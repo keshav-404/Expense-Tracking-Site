@@ -135,7 +135,7 @@ const Register = (props) => {
           setTimeout(() => {
             setShow(false);
             //alert("Registed Successfully")
-            props.history.push("/login")},700);
+            props.history.push("/login")},1000);
         }
         
 

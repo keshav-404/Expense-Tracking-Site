@@ -17,21 +17,6 @@ class Expenses extends Component  {
         }
     }
 
-    update=()=>{
-        axios.get('http://localhost:8080/expenses',{ headers: { "Authorization": localStorage.getItem("jwtToken")}})
-        .then((response) => {
-            //update the state with the response data
-            console.log(response);
-            this.setState({
-                result: response.data
-            });
-        })
-        .catch(err => {
-            this.setState({
-                error: <div className="alert alert-warning" style={{ marginTop: '5%' }}>Please Login....</div>
-            })
-        });
-    }
 
     delete=(id)=>{
       axios.delete("http://localhost:8080/delete/"+id,{ headers: { "Authorization": localStorage.getItem("jwtToken")}})
@@ -90,6 +75,8 @@ class Expenses extends Component  {
         return(
 			<div>
                 <NavBar/>
+                <br />
+                <br />
                 <div className="container" style={{ textAlign: "center" }}>
                     <br></br>
                     <h1>Expenses</h1>

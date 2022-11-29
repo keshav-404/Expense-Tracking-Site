@@ -34,6 +34,8 @@ class Balance extends Component {
 		return (
 			<div>
                 <NavBar/>
+                <br />
+                <br />
 				<div className="container" style={{ textAlign: "center" }}>
 					<br></br>
 					<h1>Balance</h1>

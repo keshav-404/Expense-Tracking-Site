@@ -31,14 +31,14 @@ public class JwtTokenProvider implements Serializable {
 
 	@Value("${jwt.secret-key}")
 	private String secretKey;
-
+	
 	@PostConstruct
 	protected void init() {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
 	}
 
 	private long validityInMilliseconds = 50 * 60 * 60 * 1000; 
-
+	//payload 
 	public String createToken(String username, String role) {
 		Claims claims = Jwts.claims().setSubject(username);
 		claims.put("auth", role);

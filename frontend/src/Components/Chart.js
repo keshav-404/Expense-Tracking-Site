@@ -17,7 +17,7 @@ export default class Chart extends Component {
 				type: 'line',
 				autoSize: true,
 				title: {
-				    text: 'Expenses',
+				    text: 'Expenses Statistic',
 				},
 				legend: {
 				    enabled: false
@@ -70,6 +70,6 @@ export default class Chart extends Component {
 	
     render() {
 
-        return <div><NavBar/><AgChartsReact options={this.state.options} /></div>;
+        return <div><NavBar/><br/><br/><AgChartsReact options={this.state.options} /></div>;
     }
 }

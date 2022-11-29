@@ -39,7 +39,7 @@ class PieChar extends React.Component {
     console.log(this.state.result)
   let a=[];
     const map1 = new Map();
-    this.state.result.map(expenses =>{
+    this.state.result.map(expenses => {
       console.log(expenses);
       if(map1.has(expenses.category))
       {
@@ -50,7 +50,7 @@ class PieChar extends React.Component {
       else{
       map1.set(expenses.category,expenses.cost)
       }
-      // map1[expenses.category]+=expenses.cost;
+      
       console.log(map1)
     
     
@@ -71,8 +71,12 @@ class PieChar extends React.Component {
   render() {
     return (
         <div><NavBar/>
+        <br />
+        <br />
+        <br />
         <Row className="justify-content-md-center">
         <Col xs={5}>
+        
       <PieChart
         id="pie"
         dataSource={this.state.d}

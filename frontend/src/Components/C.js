@@ -33,7 +33,6 @@ export default class C extends Component {
       else{
       map1.set(expenses.category,expenses.cost)
       }
-      // map1[expenses.category]+=expenses.cost;
       console.log(map1)
     
     
@@ -55,7 +54,7 @@ export default class C extends Component {
    
 
   render() {
-    return <div><NavBar/><AgChartsReact options={{
+    return <div><NavBar/><br /><br /><br /><AgChartsReact options={{
       data: this.state.d,
       series: [
         {
